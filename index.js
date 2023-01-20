@@ -1,7 +1,7 @@
 const exec = require('child_process').execSync;
 // 执行 npm run build 命令
-const pmstart = () => {
-  exec('pm2 start ./amd64/hbbs && pm2 start ./amd64/hbbr', (error, stdout, stderr) => {
+const pm2tart = () => {
+  exec('npm run pm2start', (error, stdout, stderr) => {
     if (!error) {
       // 成功
       console.log("success___________________")
@@ -19,14 +19,21 @@ const pwd = () => {
 }
 
 
+const status = () => {
+  var str = exec('npm run status');
+  return (str.toString("utf8").trim());
+}
+
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => res.type('html').send(html));
 app.get("/pwd", (req, res) => res.type('text').send(pwd()));
+app.get("/status", (req, res) => res.type('text').send(status()));
 app.get("/start", (req, res) => res.type('text').send(
-  pmstart()
+  pm2tart()
 ));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
