@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "pm2start": "chmod +x ./amd64/hbbs && chmod +x ./amd64/hbbr && pm2 start ./amd64/hbbs -- -r 0.0.0.0 && pm2 start ./amd64/hbbr",
+    "start": "npm i pm2 -g && node index.js",
+    "amd64_pm2start": "chmod +x ./amd64/hbbs && chmod +x ./amd64/hbbr && pm2 start ./amd64/hbbs -- -r 0.0.0.0 && pm2 start ./amd64/hbbr",
+    "pm2start": "chmod +x ./i386/hbbs && chmod +x ./i386/hbbr && pm2 start ./i386/hbbs -- -r 0.0.0.0 && pm2 start ./i386/hbbr",
     "arm_pm2start": "chmod +x ./armv7/hbbs && chmod +x ./armv7/hbbr && pm2 start ./armv7/hbbs -- -r 0.0.0.0 && pm2 start ./armv7/hbbr",
     "arm64_pm2start": "chmod +x ./arm64v8/hbbs && chmod +x ./arm64v8/hbbr && pm2 start ./arm64v8/hbbs -- -r 0.0.0.0 && pm2 start ./arm64v8/hbbr",
     "status": "pm2 status"
