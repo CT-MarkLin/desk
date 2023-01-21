@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "pm2start": "pm2 start ./amd64/hbbs && pm2 start ./amd64/hbbr",
+    "arm_pm2start": "pm2 start ./arm7/hbbs && pm2 start ./arm7/hbbr",
     "status": "pm2 status"
   },
   "repository": {
